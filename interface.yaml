@@ -1,0 +1,4 @@
+name: sdn-plugin
+summary: Interface for relating various SDN implementations
+version: 2
+maintainer: "Charles Butler <charles.butler@canonical.com>"
