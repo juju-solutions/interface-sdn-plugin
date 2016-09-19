@@ -41,4 +41,5 @@ class SDNPluginProvider(RelationBase):
         conv = self.conversation()
         config['mtu'] = conv.get_remote('mtu')
         config['subnet'] = conv.get_remote('subnet')
+        config['cidr'] = conv.get_remote('cidr')
         return config

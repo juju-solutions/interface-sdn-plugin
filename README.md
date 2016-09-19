@@ -42,7 +42,7 @@ This interface layer will set the following states, as appropriate:
     been related. The charm should call the following methods to provide the
     appropriate information to the clients:
 
-    * `{relation_name}.set_configuration(mtu=mtu, subnet=subnet)`
+    * `{relation_name}.set_configuration(mtu=mtu, subnet=subnet, cidr=cidr)`
 
 Example:
 
@@ -61,6 +61,8 @@ And the consuming python code:
 @when('flannel.sdn.configured', 'sdn-plugin.connected')
 def relay_sdn_configuration(host):
 
+  config = hookenv.config()
+
   with open('/var/run/flannel/subnet.env') as f:
       flannel_config = f.readlines()
 
@@ -72,7 +74,7 @@ def relay_sdn_configuration(host):
           value = f.split('=')[1].strip()
           mtu = value
 
-    host.send_sdn_info(mtu, subnet)
+    host.send_sdn_info(mtu, subnet, hookenv.config('cidr'))
 ```
 
 
