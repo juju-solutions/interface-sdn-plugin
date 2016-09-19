@@ -33,7 +33,7 @@ class SDNPluginClient(RelationBase):
         self.remove_state('{relation_name}.available')
         self.remove_state('{relation_name}.connected')
 
-    def set_configuration(self, mtu, subnet):
+    def set_configuration(self, mtu, subnet, cidr):
         ''' Set the configuration keys on the wire '''
         conv = self.conversation()
-        conv.set_remote(data={'mtu': mtu, 'subnet': subnet})
+        conv.set_remote(data={'mtu': mtu, 'subnet': subnet, 'cidr': cidr})
