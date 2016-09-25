@@ -26,7 +26,10 @@ class SDNPluginProvider(RelationBase):
         conv.set_state('{relation_name}.connected')
 
         config = self.get_sdn_config()
-        if config['mtu'] and config['subnet']:
+        # Ensure we have the expected data points from the sdn provider
+        # to ensure we have everything expected by the assumptions being
+        # made of the .available state
+        if config['mtu'] and config['subnet'] and config['cidr']:
             conv.set_state('{relation_name}.available')
 
     @hook('{provides:sdn-plugin}-relation-{departed}')
