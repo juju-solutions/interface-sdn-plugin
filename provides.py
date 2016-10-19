@@ -37,6 +37,7 @@ class SDNPluginProvider(RelationBase):
         '''Remove connected state from the provides side of the relation. '''
         conv = self.conversation()
         conv.remove_state('{relation_name}.connected')
+        conv.remove_state('{relation_name}.available')
 
     def get_sdn_config(self):
         ''' Return a dict of the SDN configuration. '''
