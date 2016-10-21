@@ -31,6 +31,8 @@ class SDNPluginProvider(RelationBase):
         # made of the .available state
         if config['mtu'] and config['subnet'] and config['cidr']:
             conv.set_state('{relation_name}.available')
+        else:
+            conv.remove_state('{relation_name}.available')
 
     @hook('{provides:sdn-plugin}-relation-{departed}')
     def broken_or_departed(self):
